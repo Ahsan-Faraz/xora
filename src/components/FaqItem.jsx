@@ -1,7 +1,5 @@
 import clsx from "clsx";
 import { useState } from "react";
-import { SlideDown } from "react-slidedown";
-import "react-slidedown/lib/slidedown.css";
 
 const FaqItem = ({ item, index }) => {
   const [activeId, setActiveId] = useState(null);
@@ -41,11 +39,16 @@ const FaqItem = ({ item, index }) => {
         </div>
       </div>
 
-      <SlideDown>
-        {activeId === item.id && (
-          <div className="body-3 px-7 py-3.5">{item.answer}</div>
+      <div
+        className={clsx(
+          "grid overflow-hidden transition-[grid-template-rows] duration-500 ease-in-out",
+          active ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
         )}
-      </SlideDown>
+      >
+        <div className="min-h-0 overflow-hidden">
+          <div className="body-3 px-7 py-3.5">{item.answer}</div>
+        </div>
+      </div>
 
       <div
         className={clsx(
